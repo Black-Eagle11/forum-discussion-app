@@ -13,6 +13,8 @@ function renderWithStore(usersState, comment) {
   const store = configureStore({
     reducer: {
       users: usersReducer,
+      auth: () => ({ user: null }),
+      threadDetail: () => ({ thread: { id: 'thread-1' } }),
     },
     preloadedState: {
       users: usersState,
