@@ -17,7 +17,7 @@ describe('Button component', () => {
     const button = screen.getByText('Klik');
     fireEvent.click(button);
 
-    expect(onClick).toHaveBeenCalledTimes(2);
+    expect(onClick).toHaveBeenCalledTimes(1);
   });
 
   test('harus disabled ketika prop disabled = true', () => {
