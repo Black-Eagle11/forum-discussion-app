@@ -1,26 +1,38 @@
+describe('Register and Login Flow', () => {
+  it('should allow user to register then login successfully', () => {
+    const email = `test${Date.now()}@mail.com`;
+    const password = '123456';
 
-describe('Login Flow', () => {
-  it('should allow user to login successfully', () => {
+    // ===== REGISTER =====
+    cy.visit('/register');
 
-    cy.visit('http://localhost:5173/login');
+    cy.get('#name').should('be.enabled').type('Test User');
+    cy.get('#email').should('be.enabled').type(email);
+    cy.get('#password').should('be.enabled').type(password);
 
-    // isi email
-    cy.get('input#email')
-      .type('testuser@gmail.com')
-      .should('have.value', 'testuser@gmail.com');
+    cy.contains('button', 'Register').click();
 
-    // isi password
-    cy.get('input#password')
-      .type('123456')
-      .should('have.value', '123456');
+    // Tunggu benar-benar pindah ke halaman login
+    cy.url({ timeout: 10000 }).should('include', '/login');
 
-    // klik tombol login
-    cy.contains('button', 'Login').click();
+    // ===== LOGIN =====
+    cy.get('#email', { timeout: 10000 })
+      .should('be.visible')
+      .and('not.be.disabled')
+      .clear()
+      .type(email);
 
-    // verifikasi redirect ke halaman utama
-    cy.url().should('eq', 'http://localhost:5173/');
+    cy.get('#password')
+      .should('be.visible')
+      .and('not.be.disabled')
+      .clear()
+      .type(password);
 
-    // pastikan navbar muncul (indikasi berhasil login)
-    cy.contains('Forum Diskusi').should('be.visible');
+    cy.contains('button', 'Login')
+      .should('not.be.disabled')
+      .click();
+
+    // ===== ASSERT LOGIN BERHASIL =====
+    cy.contains('Daftar Thread', { timeout: 15000 }).should('be.visible');
   });
 });
