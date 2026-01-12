@@ -1,3 +1,5 @@
+import PropTypes from 'prop-types';
+
 function ErrorMessage({ message }) {
   if (!message) {
     return null;
@@ -19,5 +21,9 @@ function ErrorMessage({ message }) {
     </div>
   );
 }
+
+ErrorMessage.propTypes = {
+  message: PropTypes.string.isRequired,
+};
 
 export default ErrorMessage;

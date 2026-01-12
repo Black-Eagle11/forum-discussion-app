@@ -1,3 +1,5 @@
+import PropTypes from 'prop-types';
+
 function Avatar({ src, alt = 'Avatar', size = 32, name = '' }) {
   const initials = name
     ? name
@@ -43,5 +45,12 @@ function Avatar({ src, alt = 'Avatar', size = 32, name = '' }) {
     </div>
   );
 }
+
+Avatar.propTypes = {
+  src: PropTypes.string,
+  alt: PropTypes.string,
+  size: PropTypes.number,
+  name: PropTypes.string,
+};
 
 export default Avatar;

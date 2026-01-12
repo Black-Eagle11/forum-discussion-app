@@ -1,6 +1,7 @@
 import { useDispatch, useSelector } from 'react-redux';
 
 import { voteComment } from '../../features/threadDetail/threadDetailThunks';
+import PropTypes from 'prop-types';
 
 function CommentVotes({ comment }) {
   const dispatch = useDispatch();
@@ -70,3 +71,11 @@ function CommentVotes({ comment }) {
 }
 
 export default CommentVotes;
+
+CommentVotes.propTypes = {
+  comment: PropTypes.shape({
+    id: PropTypes.string.isRequired,
+    upVotesBy: PropTypes.arrayOf(PropTypes.string).isRequired,
+    downVotesBy: PropTypes.arrayOf(PropTypes.string).isRequired,
+  }).isRequired,
+};

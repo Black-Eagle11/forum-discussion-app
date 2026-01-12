@@ -1,5 +1,5 @@
 import { useSelector } from 'react-redux';
-
+import PropTypes from 'prop-types';
 import Avatar from '../common/Avatar';
 import CommentVotes from './CommentVotes';
 import { formatDate } from '../../utils/date';
@@ -47,5 +47,18 @@ function CommentItem({ comment }) {
     </div>
   );
 }
+
+CommentItem.propTypes = {
+  comment: PropTypes.shape({
+    id: PropTypes.string.isRequired,
+    content: PropTypes.string.isRequired,
+    createdAt: PropTypes.string.isRequired,
+    owner: PropTypes.shape({
+      id: PropTypes.string.isRequired,
+      name: PropTypes.string.isRequired,
+      avatar: PropTypes.string.isRequired,
+    }).isRequired,
+  }).isRequired,
+};
 
 export default CommentItem;

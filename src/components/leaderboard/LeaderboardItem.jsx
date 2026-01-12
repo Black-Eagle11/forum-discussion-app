@@ -1,4 +1,5 @@
 import Avatar from '../common/Avatar';
+import PropTypes from 'prop-types';
 
 function LeaderboardItem({ leaderboard }) {
   const { user, score } = leaderboard;
@@ -42,5 +43,15 @@ function LeaderboardItem({ leaderboard }) {
     </div>
   );
 }
+
+LeaderboardItem.propTypes = {
+  leaderboard: PropTypes.shape({
+    score: PropTypes.number.isRequired,
+    user: PropTypes.shape({
+      name: PropTypes.string.isRequired,
+      avatar: PropTypes.string.isRequired,
+    }).isRequired,
+  }).isRequired,
+};
 
 export default LeaderboardItem;

@@ -3,7 +3,6 @@ describe('Register and Login Flow', () => {
     const email = `test${Date.now()}@mail.com`;
     const password = '123456';
 
-    // ===== REGISTER =====
     cy.visit('/register');
 
     cy.get('#name').should('be.enabled').type('Test User');
@@ -12,10 +11,8 @@ describe('Register and Login Flow', () => {
 
     cy.contains('button', 'Register').click();
 
-    // Tunggu benar-benar pindah ke halaman login
     cy.url({ timeout: 10000 }).should('include', '/login');
 
-    // ===== LOGIN =====
     cy.get('#email', { timeout: 10000 })
       .should('be.visible')
       .and('not.be.disabled')
@@ -32,7 +29,6 @@ describe('Register and Login Flow', () => {
       .should('not.be.disabled')
       .click();
 
-    // ===== ASSERT LOGIN BERHASIL =====
     cy.contains('Daftar Thread', { timeout: 15000 }).should('be.visible');
   });
 });

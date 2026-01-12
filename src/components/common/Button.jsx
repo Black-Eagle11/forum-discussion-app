@@ -1,3 +1,5 @@
+import PropTypes from 'prop-types';
+
 function Button({
   children,
   type = 'button',
@@ -22,5 +24,18 @@ function Button({
     </button>
   );
 }
+
+Button.propTypes = {
+  children: PropTypes.node.isRequired,
+  type: PropTypes.string,
+  onClick: PropTypes.func,
+  disabled: PropTypes.bool,
+};
+
+Button.defaultProps = {
+  type: 'button',
+  onClick: undefined,
+  disabled: false,
+};
 
 export default Button;

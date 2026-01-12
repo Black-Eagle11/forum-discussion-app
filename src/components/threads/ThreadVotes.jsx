@@ -2,6 +2,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useState } from 'react';
 
 import { voteThread } from '../../features/threads/threadsThunks';
+import PropTypes from 'prop-types';
 
 function ThreadVotes({ thread }) {
   const dispatch = useDispatch();
@@ -78,5 +79,13 @@ function ThreadVotes({ thread }) {
     </div>
   );
 }
+
+ThreadVotes.propTypes = {
+  thread: PropTypes.shape({
+    id: PropTypes.string.isRequired,
+    upVotesBy: PropTypes.arrayOf(PropTypes.string).isRequired,
+    downVotesBy: PropTypes.arrayOf(PropTypes.string).isRequired,
+  }).isRequired,
+};
 
 export default ThreadVotes;

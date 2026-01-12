@@ -3,9 +3,7 @@ import { Provider } from 'react-redux';
 import { configureStore } from '@reduxjs/toolkit';
 
 import ThreadFilter from '../threads/ThreadFilter';
-import threadsReducer, {
-  setCategoryFilter,
-} from '../../features/threads/threadsSlice';
+import threadsReducer from '../../features/threads/threadsSlice';
 
 function renderWithStore(preloadedThreadsState) {
   const store = configureStore({

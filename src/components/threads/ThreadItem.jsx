@@ -4,6 +4,7 @@ import { useSelector } from 'react-redux';
 import ThreadVotes from './ThreadVotes';
 import Avatar from '../common/Avatar';
 import { formatDate } from '../../utils/date';
+import PropTypes from 'prop-types';
 
 function ThreadItem({ thread }) {
   const users = useSelector((state) => state.users.list);
@@ -75,5 +76,18 @@ function ThreadItem({ thread }) {
     </article>
   );
 }
+
+ThreadItem.propTypes = {
+  thread: PropTypes.shape({
+    id: PropTypes.string.isRequired,
+    title: PropTypes.string.isRequired,
+    body: PropTypes.string.isRequired,
+    createdAt: PropTypes.string.isRequired,
+    ownerId: PropTypes.string.isRequired,
+    totalComments: PropTypes.number.isRequired,
+    upVotesBy: PropTypes.arrayOf(PropTypes.string),
+    downVotesBy: PropTypes.arrayOf(PropTypes.string),
+  }).isRequired,
+};
 
 export default ThreadItem;
